@@ -16,7 +16,7 @@ extract:
 	fi )
 
 config:
-	( if [ -f ./config_done ]; then \
+	if [ -f ./config_done ]; then \
 		echo "the same configuration"; \
 	else \
 		cd $(SRC_NAME) ; \
@@ -29,7 +29,7 @@ config:
 		sudo chmod 777 ./* ; \
 		sudo sed -i 's/"AC_OUTPUT"/"AC_OUTPUT(Makefile)"/g' ./configure.ac ; \
 		sh ./autogen.sh ; \
-	fi
+	fi ; \
 	cd $(SRC_NAME) ; \
 	sudo ./configure \
 		--prefix=/usr \
@@ -37,7 +37,7 @@ config:
 		HTOP_NCURSESW_CONFIG_SCRIPT="$(STAGEDIR)/bin/ncursesw6-config" \
 		--host=$(HOST_TARGET) \
 		--build=$(HOST_BUILD) ; \
-	)
+	
 	
 clean:
 	if [ -f $(SRC_NAME)/Makefile ] ; then \
