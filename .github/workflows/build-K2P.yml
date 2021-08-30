@@ -22,7 +22,7 @@ jobs:
     - name: Install autotools
       run: |
         sudo apt-get install -y autotools-dev autoconf 
-        sudo apt-get install -y gcc build-essential ncurses
+        sudo apt-get install -y gcc build-essential libncursesw5-dev
     - name: Clone source code
       run: |
         cd toolchain-mipsel
