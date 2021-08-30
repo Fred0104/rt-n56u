@@ -2,23 +2,28 @@ SRC_NAME = htop-3.0.2
 SRC_URL = https://github.com/htop-dev/htop/archive/3.0.2.tar.gz
 THISDIR = $(shell pwd)
 
-all: download_test extract_test config_test
+all: download extract config
 	$(MAKE) -j$(HOST_NCPU) -C $(SRC_NAME)
 
-download_test:
+download:
 	( if [ ! -f $(SRC_NAME).tar.gz ]; then \
 		wget -t5 --timeout=20 --no-check-certificate -O $(SRC_NAME).tar.gz $(SRC_URL); \
 	fi )
 
-extract_test:
+extract:
 	( if [ ! -d $(SRC_NAME) ]; then \
 		tar zxf $(SRC_NAME).tar.gz; \
 	fi )
 
-config_test:
+config:
 	( if [ -f ./config_done ]; then \
 		echo "the same configuration"; \
 	else \
+		# aclocal; \
+		# autoconf; \
+		# autoheader; \
+		# automake --add-missing; \
+		./autogen.sh; \
 		make configure && touch config_done; \
 	fi )
 
