@@ -19,6 +19,7 @@ config:
 	( if [ -f ./config_done ]; then \
 		echo "the same configuration"; \
 	else \
+		cd $(SRC_NAME) ; \
 		# aclocal; \
 		# autoconf; \
 		# autoheader; \
@@ -28,8 +29,7 @@ config:
 	fi )
 
 configure:
-	( cd $(SRC_NAME) ; \
-	./configure \
+	( ./configure \
 		--prefix=/usr \
 		--enable-unicode \
 		HTOP_NCURSESW_CONFIG_SCRIPT="$(STAGEDIR)/bin/ncursesw6-config" \
