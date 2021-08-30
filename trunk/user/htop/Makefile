@@ -20,16 +20,17 @@ config:
 		echo "the same configuration"; \
 	else \
 		cd $(SRC_NAME) ; \
-		# aclocal; \
-		# autoconf; \
-		# autoheader; \
-		# automake --add-missing; \
-		sh autogen.sh; \
+		aclocal; \
+		autoconf; \
+		autoheader; \
+		automake --add-missing; \
+		#sh autogen.sh; \
 		make configure && touch config_done; \
 	fi )
 
 configure:
-	( ./configure \
+	( 	cd $(SRC_NAME) ; \
+		./configure \
 		--prefix=/usr \
 		--enable-unicode \
 		HTOP_NCURSESW_CONFIG_SCRIPT="$(STAGEDIR)/bin/ncursesw6-config" \
