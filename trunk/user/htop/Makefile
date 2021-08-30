@@ -26,7 +26,7 @@ config:
 		#autoheader; \
 		#automake --add-missing; \
 		#make configure && touch config_done; \
-		sudo chmod 777 ./*
+		sudo chmod 777 ./* ; \
 		sudo sed -i 's/"AC_OUTPUT"/"AC_OUTPUT(Makefile)"/g' ./configure.ac ; \
 		sh ./autogen.sh ; \
 		make configure ; \
