@@ -20,6 +20,7 @@ config:
 		echo "the same configuration"; \
 	else \
 		cd $(SRC_NAME) ; \
+		mkdir -p m4 ; \
 		aclocal; \
 		autoconf; \
 		autoheader; \
@@ -31,11 +32,11 @@ config:
 configure:
 	( 	cd $(SRC_NAME) ; \
 		./configure \
-		--prefix=/usr \
-		--enable-unicode \
-		HTOP_NCURSESW_CONFIG_SCRIPT="$(STAGEDIR)/bin/ncursesw6-config" \
-		--host=$(HOST_TARGET) \
-		--build=$(HOST_BUILD) ; \
+		#--prefix=/usr \
+		#--enable-unicode \
+		#HTOP_NCURSESW_CONFIG_SCRIPT="$(STAGEDIR)/bin/ncursesw6-config" \
+		#--host=$(HOST_TARGET) \
+		#--build=$(HOST_BUILD) ; \
 	)
 
 clean:
