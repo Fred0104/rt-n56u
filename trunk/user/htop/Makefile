@@ -30,10 +30,8 @@ config:
 		sudo sed -i 's/"AC_OUTPUT"/"AC_OUTPUT(Makefile)"/g' ./configure.ac ; \
 		sh ./autogen.sh ; \
 		make configure ; \
-	fi )
-
-configure:
-	( cd $(SRC_NAME) ; \
+	fi
+	cd $(SRC_NAME) ; \
 	sudo ./configure \
 		--prefix=/usr \
 		--enable-unicode \
