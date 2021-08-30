@@ -25,7 +25,6 @@ config:
 		autoconf; \
 		autoheader; \
 		automake --add-missing; \
-
 		make configure && touch config_done; \
 	fi )
 
@@ -38,7 +37,7 @@ configure:
 		--host=$(HOST_TARGET) \
 		--build=$(HOST_BUILD) ; \
 	)
-
+	
 clean:
 	if [ -f $(SRC_NAME)/Makefile ] ; then \
 		$(MAKE) -C $(SRC_NAME) distclean ; \
