@@ -21,7 +21,8 @@ jobs:
         pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget
     - name: Install autotools
       run: |
-        sudo apt-get install -y autotools-dev autoconf
+        sudo apt-get install -y gcc gcc-c++ autotools-dev autoconf 
+        sudo apt-get install -y gcc build-essential
     - name: Clone source code
       run: |
         cd toolchain-mipsel
