@@ -26,7 +26,8 @@ config:
 		autoheader; \
 		automake --add-missing; \
 		#sh autogen.sh; \
-		make configure && touch config_done; \
+		#make configure && 
+		touch config_done; \
 	fi )
 
 configure:
