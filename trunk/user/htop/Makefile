@@ -23,7 +23,7 @@ config:
 		# autoconf; \
 		# autoheader; \
 		# automake --add-missing; \
-		./autogen.sh; \
+		./autogen.sh; 
 		make configure && touch config_done; \
 	fi )
 
