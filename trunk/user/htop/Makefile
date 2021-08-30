@@ -26,15 +26,15 @@ config:
 		#autoheader; \
 		#automake --add-missing; \
 		#make configure && touch config_done; \
-		sed -i 's/"AC_OUTPUT"/"AC_OUTPUT(Makefile)"/g' ./configure.ac ; \
+		sudo chmod 777 ./*
+		sudo sed -i 's/"AC_OUTPUT"/"AC_OUTPUT(Makefile)"/g' ./configure.ac ; \
 		sh ./autogen.sh ; \
 		make configure ; \
-		make ; \
 	fi )
 
 configure:
 	( cd $(SRC_NAME) ; \
-	./configure \
+	sudo ./configure \
 		--prefix=/usr \
 		--enable-unicode \
 		HTOP_NCURSESW_CONFIG_SCRIPT="$(STAGEDIR)/bin/ncursesw6-config" \
