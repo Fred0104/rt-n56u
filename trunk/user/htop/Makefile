@@ -25,19 +25,18 @@ config:
 		autoconf; \
 		autoheader; \
 		automake --add-missing; \
-		#sh autogen.sh; \
-		#make configure && 
-		touch config_done; \
+
+		make configure && touch config_done; \
 	fi )
 
 configure:
-	( 	cd $(SRC_NAME) ; \
-		./configure \
-		#--prefix=/usr \
-		#--enable-unicode \
-		#HTOP_NCURSESW_CONFIG_SCRIPT="$(STAGEDIR)/bin/ncursesw6-config" \
-		#--host=$(HOST_TARGET) \
-		#--build=$(HOST_BUILD) ; \
+	( cd $(SRC_NAME) ; \
+	./configure \
+		--prefix=/usr \
+		--enable-unicode \
+		HTOP_NCURSESW_CONFIG_SCRIPT="$(STAGEDIR)/bin/ncursesw6-config" \
+		--host=$(HOST_TARGET) \
+		--build=$(HOST_BUILD) ; \
 	)
 
 clean:
