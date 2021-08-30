@@ -20,12 +20,13 @@ config:
 		echo "the same configuration"; \
 	else \
 		cd $(SRC_NAME) ; \
-		mkdir -p m4 ; \
-		aclocal; \
-		autoconf; \
-		autoheader; \
-		automake --add-missing; \
-		make configure && touch config_done; \
+		#mkdir -p m4 ; \
+		#aclocal; \
+		#autoconf; \
+		#autoheader; \
+		#automake --add-missing; \
+		#make configure && touch config_done; \
+		sh ./autogen.sh && configure && make; \
 	fi )
 
 configure:
