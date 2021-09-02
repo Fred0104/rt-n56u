@@ -1,0 +1,46 @@
+name: Build K2P-5.0
+
+on: 
+  workflow_dispatch: # 手动触发
+#  watch:
+#    types: [started]
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo apt-get update
+        sudo apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd fakeroot \
+        cpio git python-docutils gettext automake autopoint texinfo build-essential help2man \
+        pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget
+    - name: Install autotools
+      run: |
+        sudo apt-get install -y autotools-dev autoconf 
+        sudo apt-get install -y gcc build-essential libncursesw5-dev
+    - name: Clone source code
+      run: |
+        git clone --depth=1 https://github.com/chongshengB/rt-n56u.git /opt/rt-n56u
+        cd /opt/rt-n56u/toolchain-mipsel
+        sh dl_toolchain.sh
+        mkdir -p /opt/images/
+    - name: Build Firmware
+      env:
+        TNAME: "K2P_nano"
+      run: |
+        cd /opt/rt-n56u/trunk
+        sudo ./clear_tree_simple
+        sudo ./build_firmware_modify $m 0
+        sudo mv -f images/*.trx /opt/images/
+        done
+    - name: Upload packages
+      uses: actions/upload-artifact@master
+      if: always()
+      with:
+        name: Padavan-packages
+        path: /opt/images
